@@ -2,20 +2,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void konstruiraj(vector<int>& segtree, 
-						vector<int> &a, int n)
+void konstruiraj(vector<int>& segtree, vector<int> &a, int n)
 {
 	//zadadi vrednost na listovite
 	for (int i = 0; i < n; i++) 
 		segtree[n + i] = a[i]; 
      //zadadi vrednost na vnatresnite
 	for (int i = n - 1; i >= 1; i--)
-		segtree[i] = max(segtree[2 * i], 
-						segtree[2 * i + 1]);
+		segtree[i] = max(segtree[2 * i], segtree[2 * i + 1]);
 }
 
-void update(vector<int>& segtree, int kaj, int val, 
-											int n)
+void update(vector<int>& segtree, int kaj, int val, int n)
 {
 	//prvo smeni indeks na listovite
 	kaj += n;
@@ -29,13 +26,11 @@ void update(vector<int>& segtree, int kaj, int val,
 		kaj >>= 1;
 
 	
-		segtree[kaj] = max(segtree[2 * kaj],
-						segtree[2 * kaj + 1]);
+		segtree[kaj] = max(segtree[2 * kaj], segtree[2 * kaj + 1]);
 	}
 }
 
-int rquery(vector<int>& segtree, int left, int
-									right, int n)
+int rquery(vector<int>& segtree, int left, int right, int n)
 {
 
 
@@ -83,9 +78,7 @@ int main()
 
 
 	int left = 0, right = 5;
-	cout << "Makismum vo opsegot " << left << " do "
-		<< right << " e "<< rquery(segtree, left, 
-								right + 1, n) << "\n";
+	cout << "Makismum vo opsegot " << left << " do " << right << " e "<< rquery(segtree, left, right + 1, n) << "\n";
 
 	int index = 4, val = 85;
 
@@ -93,9 +86,7 @@ int main()
 	update(segtree, index, val, n); 
 
 	left = 1, right = 7;
-	cout << "Makismum vo opsegot " << left << " do "
-		<< right << " e " << rquery(segtree, 
-					left, right + 1, n) << "\n";
+	cout << "Makismum vo opsegot " << left << " do " << right << " e " << rquery(segtree, left, right + 1, n) << "\n";
 
 	return 0;
 }
