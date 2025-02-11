@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+
+bool isValid(vector<int> &p, int row, int col) { //funkcija proveruva dali pozicijata na kralicata e validna
+    for (int i = 0; i < row; ++i) {
+        int pCol = p[i];
+        
+        if (pCol == col || abs(pCol - col) == abs(i - row)) {// proveruvam dali dve kralici se na ista dijagonala i kolona
+            return false;
+        }
+    }
+    return true;
+}
+
+
+void NQueens(int row, int n, vector<int> &p, int &res) {//rekurzivno gi mestam redica po redica
+    if (row == n) { // ako sekoa e namestena
+        res++;
+    
+        
+    }
+
+    for (int col = 0; col < n; ++col) {
+        if (isValid(p, row, col)) {
+            p[row] = col; 
+            NQueens(row + 1, n, p, res);
+        }
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> p(n, -1); 
+    int res = 0;
+
+    NQueens(0, n, p, res);
+
+    cout<<res<<endl;
+    return 0;
+}
