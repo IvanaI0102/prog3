@@ -1,0 +1,17 @@
+class Solution {
+    public:
+        int maxArea(vector<int>& h) {
+            int max_pl=0;
+            for (int i=0; i<h.size()-1; i++)
+            {
+                for (int i1=i+1; i1<h.size(); i1++)
+                {
+                    if (min(h[i], h[i1])(abs(i-i1))>max_pl)
+                    {
+                        max_pl=min(h[i], h[i1])(abs(i-i1));
+                    }
+                }
+            }
+            return max_pl;
+        }
+    };
